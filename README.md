@@ -1,369 +1,58 @@
-# Finora
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-Finora is a finance management SaaS that I'm building with Laravel and React.
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-The main idea is to have a single application where a company can manage its income, expenses, accounts, budgets, clients, invoices and financial reports.
+## About Laravel
 
-I'm building this project mainly to improve my full-stack development skills and to practice building a Laravel application in a more production-oriented way.
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-## Tech Stack
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-### Backend
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-* PHP
-* Laravel
-* MySQL
-* Redis
-* Laravel Sanctum
-* Docker
+## Learning Laravel
 
-### Frontend
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-* React
-* TypeScript
-* Vite
-* React Router
-* Axios
+In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-The frontend and backend are separate applications and communicate through REST APIs.
+You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
 
----
+## Agentic Development
 
-## Current Progress
+Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
 
-The project is currently under development.
+```bash
+composer require laravel/boost --dev
 
-### Backend
-
-* [ ] Laravel project setup
-* [ ] Docker environment
-* [ ] MySQL and Redis setup
-* [ ] API structure
-* [ ] Authentication
-* [ ] Organizations
-* [ ] Roles and permissions
-* [ ] Multi-tenancy
-* [ ] Categories
-* [ ] Accounts
-* [ ] Income and expenses
-* [ ] Dashboard
-* [ ] Budgets
-* [ ] Recurring transactions
-* [ ] Clients
-* [ ] Invoices
-* [ ] Payments
-* [ ] Reports
-* [ ] CSV / Excel / PDF exports
-* [ ] Notifications
-* [ ] Queues
-* [ ] Events
-* [ ] Audit logs
-* [ ] Caching
-* [ ] Testing
-* [ ] Deployment
-
-### Frontend
-
-The React application will be developed after the main backend APIs are ready.
-
-* [ ] React + TypeScript setup
-* [ ] Authentication
-* [ ] Organization management
-* [ ] Categories and accounts
-* [ ] Income and expense management
-* [ ] Dashboard
-* [ ] Budgets
-* [ ] Recurring transactions
-* [ ] Clients
-* [ ] Invoices
-* [ ] Reports
-* [ ] Notifications
-* [ ] Responsive UI
-* [ ] Frontend tests
-
----
-
-## Main Features
-
-### Authentication
-
-Users will be able to:
-
-* Register
-* Login
-* Logout
-* Verify their email
-* Reset their password
-
-Authentication will be handled using Laravel Sanctum.
-
-### Organizations
-
-Finora is designed around organizations.
-
-A user can belong to an organization, and organization members can have different roles and permissions.
-
-The initial roles are:
-
-* Owner
-* Admin
-* Accountant
-* Manager
-* Employee
-
-One of the important parts of the project is making sure that users cannot access data belonging to another organization.
-
-### Income & Expenses
-
-Users will be able to record income and expenses and associate them with:
-
-* Categories
-* Financial accounts
-* Dates
-* References
-* Vendors
-* Payment methods
-* Attachments
-
-Transactions will also support filtering, sorting, pagination and date ranges.
-
-### Accounts
-
-The system will support different types of financial accounts such as:
-
-* Cash
-* Bank
-* Card
-
-### Budgets
-
-Users can create budgets for categories and specific periods.
-
-The application will calculate:
-
-* Budget limit
-* Amount spent
-* Remaining amount
-* Percentage used
-
-Budget warnings will be triggered when spending reaches 80%, and the budget will be marked as exceeded at 100%.
-
-### Invoices
-
-Organizations can create invoices for their clients.
-
-An invoice will contain:
-
-* Client
-* Line items
-* Taxes
-* Total
-* Due date
-* Payments
-
-Invoice statuses will include:
-
-`Draft → Sent → Viewed → Partially Paid → Paid`
-
-Invoices can also become `Overdue` or `Cancelled`.
-
-### Reports
-
-The backend will provide APIs for:
-
-* Dashboard statistics
-* Income statement
-* Expense reports
-* Cash flow
-* Monthly summaries
-
-Reports will support date-based filtering.
-
-### Recurring Transactions
-
-Recurring income and expense records will be supported.
-
-Laravel's scheduler and queues will be used to create actual transactions when they become due.
-
----
-
-## API
-
-Some of the planned API endpoints are:
-
-```text
-POST   /api/auth/register
-POST   /api/auth/login
-POST   /api/auth/logout
-GET    /api/auth/me
-
-GET    /api/organizations/current
-PATCH  /api/organizations/current
-GET    /api/organizations/members
-
-GET    /api/transactions
-
-POST   /api/incomes
-GET    /api/incomes/{id}
-PATCH  /api/incomes/{id}
-DELETE /api/incomes/{id}
-
-POST   /api/expenses
-GET    /api/expenses/{id}
-PATCH  /api/expenses/{id}
-DELETE /api/expenses/{id}
-
-GET    /api/budgets
-POST   /api/budgets
-GET    /api/budgets/{id}
-PATCH  /api/budgets/{id}
-DELETE /api/budgets/{id}
-
-GET    /api/invoices
-POST   /api/invoices
-GET    /api/invoices/{id}
-PATCH  /api/invoices/{id}
-
-POST   /api/invoices/{id}/send
-POST   /api/invoices/{id}/payments
-
-GET    /api/reports/dashboard
-GET    /api/reports/income-statement
-GET    /api/reports/expenses
-GET    /api/reports/cash-flow
+php artisan boost:install
 ```
 
-The API will use JSON responses and standard HTTP methods/status codes.
+Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
 
----
+## Contributing
 
-## Database
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-Some of the main entities are:
+## Code of Conduct
 
-```text
-users
-organizations
-organization_users
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-roles
-permissions
+## Security Vulnerabilities
 
-categories
-accounts
-transactions
-incomes
-expenses
-attachments
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-budgets
-budget_categories
+## License
 
-recurring_transactions
-
-clients
-invoices
-invoice_items
-payments
-
-notifications
-audit_logs
-```
-
-The database structure will be developed gradually as each feature is implemented.
-
----
-
-## Project Structure
-
-The repository will contain the two applications separately:
-
-```text
-finora/
-│
-├── backend/
-│   └── Laravel application
-│
-├── frontend/
-│   └── React + TypeScript application
-│
-└── README.md
-```
-
-The backend will use Laravel's standard structure, with additional folders for services, actions, jobs, notifications, policies and API resources as the project grows.
-
----
-
-## Development Approach
-
-I'm developing this project feature by feature.
-
-For each backend feature, the general process is:
-
-```text
-Database
-   ↓
-Model / Relationships
-   ↓
-Business Logic
-   ↓
-API
-   ↓
-Validation
-   ↓
-Authorization
-   ↓
-Tests
-```
-
-Once an API is ready, the corresponding React functionality will be connected to it.
-
----
-
-## Testing
-
-Testing will be added throughout the project rather than at the very end.
-
-The main areas I'll cover are:
-
-* Unit tests
-* Feature tests
-* API tests
-* Validation tests
-* Authorization tests
-* Multi-tenant isolation tests
-* Database tests
-* Queue tests
-
----
-
-## Docker
-
-The development environment will use Docker for the main services:
-
-```text
-Laravel / PHP
-MySQL
-Redis
-Nginx
-```
-
-The goal is to make the project easy to run on a new development environment without manually configuring every service.
-
----
-
-## Deployment
-
-After the application is completed, I plan to deploy it using:
-
-* Docker
-* Nginx
-* AWS
-* HTTPS
-* Laravel queue workers
-* Laravel scheduler
-* GitHub Actions
-
-Deployment and monitoring will be added as a later phase of the project.
-
----
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
