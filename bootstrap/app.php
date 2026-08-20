@@ -16,7 +16,51 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        $exceptions->shouldRenderJsonWhen(
-            fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
-        );
-    })->create();
+    $exceptions->render(function (
+        \Illuminate\Http\Exceptions\HttpResponseException $e,
+        $request
+    ) {
+        if ($request->is('api/*')) {
+            return $e->getResponse();
+        }
+    });
+
+    $exceptions->render(function (
+        \Illuminate\Validation\ValidationException $e,
+        $request
+    ) {
+        if ($request->is('api/*')) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed.',
+                'errors' => $e->errors(),
+            ], $e->status);
+        }
+    });
+
+    $exceptions->render(function (
+        \Symfony\Component\HttpKernel\Exception\HttpExceptionInterface $e,
+        $request
+    ) {
+        if ($request->is('api/*')) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage() ?: 'Request failed.',
+            ], $e->getStatusCode());
+        }
+    });
+
+    $exceptions->render(function (
+        \Throwable $e,
+        $request
+    ) {
+        if ($request->is('api/*')) {
+            return response()->json([
+                'success' => false,
+                'message' => config('app.debug')
+                    ? $e->getMessage()
+                    : 'An unexpected error occurred.',
+            ], 500);
+        }
+    });
+})->create();
