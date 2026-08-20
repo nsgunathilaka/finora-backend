@@ -2,6 +2,7 @@
 
 use App\Http\Responses\ApiResponse;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Auth\AuthController;
 
 Route::get('/health', function () {
     return ApiResponse::success(
@@ -13,12 +14,6 @@ Route::get('/health', function () {
 });
 
 
-Route::post('/test-validation', function (\Illuminate\Http\Request $request) {
-    $request->validate([
-        'email' => ['required', 'email'],
-    ]);
-
-    return ApiResponse::success(
-        message: 'Validation passed.'
-    );
+Route::prefix('auth')->group(function () {
+    Route::post('/register', [AuthController::class, 'register']);
 });
